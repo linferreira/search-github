@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+
 import Input from "../Input";
+import Title from "../Title";
+
 import { Container } from "./styles";
 
 const Header = () => {
@@ -7,6 +10,7 @@ const Header = () => {
 
   return (
     <Container>
+      <Title />
       <Input
         placeholder="User"
         onChange={({ target }) => setUser(target.value)}
