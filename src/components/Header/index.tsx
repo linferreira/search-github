@@ -10,12 +10,14 @@ const Header = () => {
 
   return (
     <Container>
-      <Title />
-      <Input
-        placeholder="User"
-        onChange={({ target }) => setUser(target.value)}
-        required
-      />
+      <div>
+        <Title />
+        <Input
+          placeholder="User"
+          onChange={({ target }) => setUser(target.value)}
+          required
+        />
+      </div>
     </Container>
   );
 };
