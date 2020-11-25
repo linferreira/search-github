@@ -19,7 +19,7 @@ const Content = () => {
   return (
     <>
       <Header />
-      <Body total={usersState.total} users={usersState.users} />
+      <Body message={usersState.message} users={usersState.users} />
     </>
   );
 };
