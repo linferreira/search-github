@@ -17,13 +17,27 @@ const Body: React.FC<IBodyProps> = () => {
     (reducers: IAppState) => reducers.getUsers
   );
 
-  return (
-    <Container>
-      {usersState.username !== "" && (
+  function showMessage() {
+    if (usersState.total === 0 && usersState.username !== "") {
+      return <p className="not-found">User not found!</p>;
+    } else if (usersState.username !== "") {
+      return (
         <p>
           Found {usersState.total} results from <b>{usersState.username}</b>
         </p>
-      )}
+      );
+    } else if (usersState.error) {
+      return (
+        <p className="error">
+          An error ocurred in your request, please try again
+        </p>
+      );
+    }
+  }
+
+  return (
+    <Container>
+      {showMessage()}
 
       <div>
         {usersState.users.map((item: any) => (

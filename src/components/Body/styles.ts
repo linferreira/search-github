@@ -12,6 +12,19 @@ export const Container = styled.div`
     margin-bottom: 30px;
   }
 
+  .not-found {
+    background-color: transparent;
+    font-size: 24px;
+    color: #e07408;
+    font-weight: 600;
+  }
+
+  .error {
+    background-color: transparent;
+    font-size: 24px;
+    color: #e44c4e;
+  }
+
   > div {
     padding: 0 30px;
     width: 100%;
