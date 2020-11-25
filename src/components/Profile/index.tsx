@@ -14,10 +14,14 @@ const Profile: React.FC<IProfileProps> = ({
   userProfile,
 }) => (
   <Container>
-    <a href={userProfile} target="_blank">
-      <img src={userAvatarUrl} alt="avatar" />
+    <a href={userProfile} target="blank">
+      <img
+        src={userAvatarUrl}
+        alt={`${userName} - profile avatar`}
+        title={`${userName} - profile avatar`}
+      />
+      <p>{userName}</p>
     </a>
-    <p>{userName}</p>
   </Container>
 );
 
