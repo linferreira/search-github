@@ -8,11 +8,13 @@ import { Container } from "./styles";
 import { getUsersAction } from "../../redux/reducers/search/index";
 
 const Header = () => {
+  const [user, setUser] = useState("");
+
   let typingTimer: any = null;
+
   const doneTypingInterval = 1000;
 
   const dispatch = ReactRedux.useDispatch();
-  const [user, setUser] = useState("");
 
   function onkeyup() {
     clearTimeout(typingTimer);
@@ -38,11 +40,12 @@ const Header = () => {
       <div>
         <Title />
         <Input
-          placeholder="User"
+          placeholder="Search"
           onChange={({ target }) => handleChange(target.value)}
           required
           onKeyUp={onkeyup}
           onKeyDown={onkeydown}
+          autoFocus
         />
       </div>
     </Container>
