@@ -4,6 +4,13 @@ export const Container = styled.div`
   margin-top: 30px;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+
+  > p {
+    background-color: #f7f7ad;
+    align-self: center;
+    margin-bottom: 30px;
+  }
 
   > div {
     padding: 0 30px;

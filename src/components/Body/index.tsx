@@ -1,37 +1,37 @@
 import React from "react";
+import * as ReactRedux from "react-redux";
+
+import { IAppState } from "../../redux/configureStore";
 
 import Profile from "../Profile";
 
 import { Container } from "./styles";
 
-const people = [
-  {
-    userAvatarUrl: "https://avatars2.githubusercontent.com/u/22802370?v=4",
-    userName: "Linferreira",
-    userProfile: "https://github.com/Linferreira",
-  },
-  {
-    userAvatarUrl: "https://avatars2.githubusercontent.com/u/40777007?v=4",
-    userName: "Stheffane",
-    userProfile: "https://github.com/Stheffane",
-  },
-  {
-    userAvatarUrl: "https://avatars3.githubusercontent.com/u/18310307?v=4",
-    userName: "DDLibaneo",
-    userProfile: "https://github.com/DDLibaneo",
-  },
-];
+interface IBodyProps {
+  total: number;
+  users: any[];
+}
 
-const Body = () => {
+const Body: React.FC<IBodyProps> = () => {
+  const usersState = ReactRedux.useSelector(
+    (reducers: IAppState) => reducers.getUsers
+  );
+
   return (
     <Container>
+      {usersState.username !== "" && (
+        <p>
+          Found {usersState.total} results from <b>{usersState.username}</b>
+        </p>
+      )}
+
       <div>
-        {people.map((item) => (
+        {usersState.users.map((item: any) => (
           <Profile
-            key={item.userName}
-            userAvatarUrl={item.userAvatarUrl}
-            userName={item.userName}
-            userProfile={item.userProfile}
+            key={item.login}
+            userAvatarUrl={item.avatar_url}
+            userName={item.login}
+            userProfile={item.html_url}
           />
         ))}
       </div>
