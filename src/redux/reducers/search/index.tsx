@@ -26,9 +26,9 @@ function searchUsersReducer(
     case GET_USERS_SUCESS:
       return {
         ...SEARCH_INITIAL_STATE,
-        users: action.users,
-        total: action.total,
-        username: action.username,
+        users: action.payload.users,
+        total: action.payload.total,
+        username: action.payload.username,
       };
 
     case GET_USERS_LOADING:
@@ -40,7 +40,6 @@ function searchUsersReducer(
     case GET_USERS_ERROR:
       return {
         ...SEARCH_INITIAL_STATE,
-        loading: false,
         error: true,
       };
 
@@ -49,22 +48,28 @@ function searchUsersReducer(
   }
 }
 
-export function getUsersAction(user: string) {
+export function getUsersAction(username: string) {
   return async (dispatch: any) => {
     dispatch({
       type: GET_USERS_LOADING,
     });
+
     try {
-      const userURL = `https://api.github.com/search/users?q=${user}`;
+      const userURL = `https://api.github.com/search/users?q=${username}`;
 
       const usersResponse = await fetch(userURL);
       const response = await usersResponse.json();
 
+      const users = response.items;
+      const total = response.total_count;
+
       dispatch({
         type: GET_USERS_SUCESS,
-        users: response.items,
-        total: response.total_count,
-        username: user,
+        payload: {
+          users,
+          total,
+          username,
+        },
       });
     } catch (err) {
       console.error(err);
