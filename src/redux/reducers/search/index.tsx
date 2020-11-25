@@ -44,7 +44,7 @@ function searchUsersReducer(
       return {
         ...SEARCH_INITIAL_STATE,
         error: true,
-        message: action.payload.message,
+        message: action.message,
       };
 
     default:
