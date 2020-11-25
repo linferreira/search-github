@@ -8,6 +8,7 @@ interface ISearchInitalState {
   error: boolean;
   total: number;
   username: string;
+  message: string;
 }
 
 const SEARCH_INITIAL_STATE: ISearchInitalState = {
@@ -16,6 +17,7 @@ const SEARCH_INITIAL_STATE: ISearchInitalState = {
   error: false,
   total: 0,
   username: "",
+  message: "",
 };
 
 function searchUsersReducer(
@@ -29,6 +31,7 @@ function searchUsersReducer(
         users: action.payload.users,
         total: action.payload.total,
         username: action.payload.username,
+        message: action.payload.message,
       };
 
     case GET_USERS_LOADING:
@@ -41,6 +44,7 @@ function searchUsersReducer(
       return {
         ...SEARCH_INITIAL_STATE,
         error: true,
+        message: action.payload.message,
       };
 
     default:
@@ -69,6 +73,10 @@ export function getUsersAction(username: string) {
           users,
           total,
           username,
+          message:
+            total === 0 && username
+              ? "User not found!"
+              : `Found ${total} results from ${username}`,
         },
       });
     } catch (err) {
@@ -76,6 +84,7 @@ export function getUsersAction(username: string) {
 
       dispatch({
         type: GET_USERS_ERROR,
+        message: "An error ocurred in your request, please try again",
       });
     }
   };
