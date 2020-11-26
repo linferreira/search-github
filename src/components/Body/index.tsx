@@ -21,14 +21,15 @@ const Body: React.FC<IBodyProps> = ({ users, message, isLoading }) => {
       {message && <p>{message}</p>}
 
       <div>
-        {users.map((item: any) => (
-          <Profile
-            key={item.login}
-            userAvatarUrl={item.avatar_url}
-            userName={item.login}
-            userProfile={item.html_url}
-          />
-        ))}
+        {users &&
+          users.map((item: any) => (
+            <Profile
+              key={item.login}
+              userAvatarUrl={item.avatar_url}
+              userName={item.login}
+              userProfile={item.html_url}
+            />
+          ))}
       </div>
     </Container>
   );
