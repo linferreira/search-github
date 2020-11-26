@@ -3,7 +3,6 @@ import * as ReactRedux from "react-redux";
 
 import Body from "../../components/Body";
 import Header from "../../components/Header";
-import Spinner from "../../components/Spinner";
 
 import { IAppState } from "../../redux/configureStore";
 
@@ -12,14 +11,14 @@ const Content = () => {
     (reducers: IAppState) => reducers.getUsers
   );
 
-  if (usersState.loading) {
-    return <Spinner />;
-  }
-
   return (
     <>
       <Header />
-      <Body message={usersState.message} users={usersState.users} />
+      <Body
+        message={usersState.message}
+        users={usersState.users}
+        isLoading={usersState.loading}
+      />
     </>
   );
 };
